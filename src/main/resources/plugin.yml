@@ -1,0 +1,11 @@
+name: GravityControl
+version: 1.0
+main: io.github.laymanuel.gc.GravityControl
+api-version: 1.13
+author: laymanuel
+description: Enable gravity/sand dupe on papermc.
+commands:
+  gcr:
+    description: Reload GravityControl Configuration
+    usage: /gcr
+    permission: gravitycontrol.reload

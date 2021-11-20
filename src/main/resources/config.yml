@@ -1,0 +1,12 @@
+# Worlds where gravity dupes will be allowed. Default "*" means all worlds.
+worlds:
+  - "*"
+
+# Blocks that you want to allow duping. Default all enabled.
+enabled-blocks:
+  sand: true
+  red-sand: true
+  anvil: true
+  dragon-egg: true
+  gravel: true
+  concrete-powder: true

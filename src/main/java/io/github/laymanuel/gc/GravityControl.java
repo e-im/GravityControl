@@ -3,14 +3,14 @@ package io.github.laymanuel.gc;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class GravityControl extends JavaPlugin {
-    public static GravityControlConfig CONFIG;
+  public GravityControlConfig config;
 
-    @Override
-    public void onEnable() {
-        this.saveDefaultConfig();
-        CONFIG = new GravityControlConfig(this.getConfig());
+  @Override
+  public void onEnable() {
+    this.saveDefaultConfig();
+    this.config = new GravityControlConfig(this.getConfig());
 
-        this.getServer().getPluginManager().registerEvents(new GravityListener(), this);
-        this.getCommand("gcr").setExecutor(new ReloadCommand(this));
-    }
+    this.getServer().getPluginManager().registerEvents(new GravityListener(this), this);
+    this.getCommand("gcr").setExecutor(new ReloadCommand(this));
+  }
 }

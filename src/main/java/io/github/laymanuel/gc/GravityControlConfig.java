@@ -3,6 +3,7 @@ package io.github.laymanuel.gc;
 import org.bukkit.configuration.ConfigurationSection;
 
 import java.util.List;
+import java.util.Objects;
 
 public class GravityControlConfig {
   public final double horizontalCoefficient;
@@ -43,6 +44,19 @@ public class GravityControlConfig {
         this.gravel = config.getBoolean("gravel");
         this.concretePowder = config.getBoolean("concrete-powder");
       }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      Blocks blocks = (Blocks) o;
+      return sand == blocks.sand && redSand == blocks.redSand && anvil == blocks.anvil && dragonEgg == blocks.dragonEgg && gravel == blocks.gravel && concretePowder == blocks.concretePowder;
+    }
+
+    @Override
+    public int hashCode() {
+      return Objects.hash(sand, redSand, anvil, dragonEgg, gravel, concretePowder);
     }
   }
 }

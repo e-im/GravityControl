@@ -4,6 +4,8 @@
 
 *This is my first plugin! Please tell me in issue if you notice any problem. I want to improve!*
 
+# [Downloads](https://github.com/laymanuel/GravityControl/releases) | [Discord](https://discord.gg/TNvq9y7esy)
+
 ## **Features:**
 
 * Enable duping for each different block
@@ -37,4 +39,4 @@ enabled-blocks:
 ```
 
 ## Support / Discord / Contact
-I do not have a discord. Make an issue if you want help or notice issue, I will respond.
+Join [Discord](https://discord.gg/TNvq9y7esy) for support/help or feature request. You may also make issue here on GitHub or reply on PaperMC Forums to my post.

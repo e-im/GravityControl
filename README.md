@@ -1,5 +1,7 @@
 # GravityControl
+
 ### ***Liberate your server from the anti-dupe bourgeoisie.***
+
 #### Paper plugin to enable gravity/sand duplication
 
 *This is my first plugin! Please tell me in issue if you notice any problem. I want to improve!*
@@ -39,4 +41,6 @@ enabled-blocks:
 ```
 
 ## Support / Discord / Contact
-Join [Discord](https://discord.gg/TNvq9y7esy) for support/help or feature request. You may also make issue here on GitHub or reply on PaperMC Forums to my post.
+
+Join [Discord](https://discord.gg/TNvq9y7esy) for support/help or feature request. You may also make issue here on
+GitHub or reply on PaperMC Forums to my post.

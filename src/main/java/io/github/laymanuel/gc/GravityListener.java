@@ -77,6 +77,7 @@ public class GravityListener implements Listener {
     final Material m = falling.getBlockData().getMaterial();
     if (
       (m == Material.SAND && !this.plugin.config.blocks.sand)
+        || (m == Material.RED_SAND && !this.plugin.config.blocks.redSand)
         || (ANVILS.contains(m) && !this.plugin.config.blocks.anvil)
         || (m == Material.DRAGON_EGG && !this.plugin.config.blocks.dragonEgg)
         || (m == Material.GRAVEL && !this.plugin.config.blocks.gravel)

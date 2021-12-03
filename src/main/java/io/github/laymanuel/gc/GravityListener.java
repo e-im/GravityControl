@@ -15,12 +15,12 @@ import org.bukkit.util.Vector;
 import java.util.EnumSet;
 
 public class GravityListener implements Listener {
-  private static final BlockFace[] DUPE_ALLOWED_PORTAL_FACES = {
+  private static final EnumSet<BlockFace> DUPE_ALLOWED_PORTAL_FACES = EnumSet.of(
     BlockFace.NORTH,
     BlockFace.EAST,
     BlockFace.SOUTH,
     BlockFace.WEST
-  };
+  );
   private static final EnumSet<Material> CONCRETE_POWDERS = EnumSet.of(
     Material.WHITE_CONCRETE_POWDER,
     Material.ORANGE_CONCRETE_POWDER,
@@ -64,7 +64,10 @@ public class GravityListener implements Listener {
       if ((face == BlockFace.NORTH && velocity.getZ() < 0D)
         || (face == BlockFace.EAST && velocity.getX() > 0D)
         || (face == BlockFace.SOUTH && velocity.getZ() > 0D)
-        || (face == BlockFace.WEST && velocity.getX() < 0D)) this.dupe(falling, velocity);
+        || (face == BlockFace.WEST && velocity.getX() < 0D)) {
+        this.dupe(falling, velocity);
+        return;
+      }
     }
   }
 

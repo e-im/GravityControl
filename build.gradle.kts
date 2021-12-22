@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "io.github.laymanuel"
-version = "1.2.0"
+version = "1.3.0-SNAPSHOT"
 description = "Plugin to enable gravity/sand duping on PaperMC"
 
 repositories {

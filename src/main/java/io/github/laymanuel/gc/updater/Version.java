@@ -1,4 +1,4 @@
-package io.github.laymanuel.gc;
+package io.github.laymanuel.gc.updater;
 
 public class Version {
   private final boolean outdated;

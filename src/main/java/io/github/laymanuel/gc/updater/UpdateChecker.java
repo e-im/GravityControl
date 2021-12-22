@@ -1,6 +1,7 @@
-package io.github.laymanuel.gc;
+package io.github.laymanuel.gc.updater;
 
 import com.google.gson.Gson;
+import io.github.laymanuel.gc.GravityControl;
 
 import java.io.BufferedInputStream;
 import java.io.InputStreamReader;

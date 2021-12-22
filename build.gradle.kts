@@ -1,8 +1,8 @@
 import net.minecrell.pluginyml.bukkit.BukkitPluginDescription.Permission.Default
 
 plugins {
-  id("com.github.johnrengelman.shadow") version "7.1.0"
-  id("xyz.jpenilla.run-paper") version "1.0.5"
+  id("com.github.johnrengelman.shadow") version "7.1.1"
+  id("xyz.jpenilla.run-paper") version "1.0.6"
   id("net.kyori.blossom") version "1.2.0"
   id("net.minecrell.plugin-yml.bukkit") version "0.5.1"
 }
@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-  compileOnly("com.destroystokyo.paper", "paper-api", "1.13.2-R0.1-SNAPSHOT")
+  compileOnly("io.papermc.paper", "paper-api", "1.18.1-R0.1-SNAPSHOT")
   implementation("org.bstats", "bstats-bukkit", "2.2.1")
 }
 
@@ -26,9 +26,9 @@ blossom {
 
 bukkit {
   website = "https://github.com/Laymanuel/GravityControl"
-  author = "Laymanuel"
+  author = "laymanuel"
   main = project.group.toString() + ".gc.GravityControl"
-  apiVersion = "1.13"
+  apiVersion = "1.16"
 
   commands {
     register("gcr") {
@@ -45,13 +45,13 @@ bukkit {
       default = Default.OP
     }
   }
-
 }
 
 tasks {
-  compileJava {
-    sourceCompatibility = "1.8"
-    targetCompatibility = "1.8"
+  java {
+    toolchain {
+      languageVersion.set(JavaLanguageVersion.of(17))
+    }
   }
 
   runServer {

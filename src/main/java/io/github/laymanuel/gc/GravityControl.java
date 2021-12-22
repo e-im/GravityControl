@@ -1,5 +1,6 @@
 package io.github.laymanuel.gc;
 
+import io.github.laymanuel.gc.updater.UpdateChecker;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.SimplePie;
 import org.bukkit.plugin.java.JavaPlugin;

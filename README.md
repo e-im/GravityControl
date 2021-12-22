@@ -1,11 +1,6 @@
 # GravityControl
-
 ### ***Liberate your server from the anti-dupe bourgeoisie.***
-
 #### Paper plugin to enable gravity/sand duplication
-
-*This is my first plugin! Please tell me in issue if you notice any problem. I want to improve!*
-
 # [Downloads](https://github.com/laymanuel/GravityControl/releases) | [Discord](https://discord.gg/TNvq9y7esy)
 
 ## **Features:**
@@ -13,13 +8,13 @@
 * Enable duping for each different block
 * Allow duping in some worlds but not others
 * Enable sand duping on Paper servers
-* 1.13-1.18+ servers. Complete cross-version compatible. No NMS or reflection!
+* 1.16-1.18+ servers. Complete cross-version compatible. No NMS or reflection!
 
 ## **Commands**
 
-| Command | Description | Permission |
-| --- | --- | --- |
-| /gcr | Reload GravityControl Configuration | `gravitycontrol.reload` |
+| Command | Description                         | Permission              |
+|---------|-------------------------------------|-------------------------|
+| /gcr    | Reload GravityControl Configuration | `gravitycontrol.reload` |
 
 ## **Configuration**
 

@@ -1,4 +1,4 @@
-package io.github.laymanuel.gc;
+package dev.thoughtcrime.gravitycontrol;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -53,8 +53,7 @@ public class GravityListener implements Listener {
 
   @EventHandler(priority = EventPriority.HIGHEST)
   public void onEntityChangeBlock(final EntityChangeBlockEvent event) {
-    if (!(event.getEntity() instanceof FallingBlock) || event.getTo() == Material.AIR) return;
-    final FallingBlock falling = (FallingBlock) event.getEntity();
+    if (!(event.getEntity() instanceof final FallingBlock falling) || event.getTo() == Material.AIR) return;
     final Vector velocity = falling.getVelocity().clone();
 
     for (BlockFace face : DUPE_ALLOWED_PORTAL_FACES) {

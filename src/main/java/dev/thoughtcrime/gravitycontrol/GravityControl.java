@@ -1,6 +1,5 @@
-package io.github.laymanuel.gc;
+package dev.thoughtcrime.gravitycontrol;
 
-import io.github.laymanuel.gc.updater.UpdateChecker;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.SimplePie;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -8,7 +7,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class GravityControl extends JavaPlugin {
   public static final int PLUGIN_ID = 13384;
-  public final String version = "@VERSION@";
   public GravityControlConfig config;
   private final UpdateChecker updater = new UpdateChecker(this);
 

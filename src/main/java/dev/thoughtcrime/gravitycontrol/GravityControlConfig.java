@@ -1,4 +1,4 @@
-package io.github.laymanuel.gc;
+package dev.thoughtcrime.gravitycontrol;
 
 import org.bukkit.configuration.ConfigurationSection;
 

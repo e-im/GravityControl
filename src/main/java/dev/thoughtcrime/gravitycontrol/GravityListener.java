@@ -14,35 +14,15 @@ import org.bukkit.util.Vector;
 
 import java.util.EnumSet;
 
+import static com.destroystokyo.paper.MaterialSetTag.ANVIL;
+import static com.destroystokyo.paper.MaterialTags.CONCRETE_POWDER;
+
 public class GravityListener implements Listener {
   private static final EnumSet<BlockFace> DUPE_ALLOWED_PORTAL_FACES = EnumSet.of(
     BlockFace.NORTH,
     BlockFace.EAST,
     BlockFace.SOUTH,
     BlockFace.WEST
-  );
-  private static final EnumSet<Material> CONCRETE_POWDERS = EnumSet.of(
-    Material.WHITE_CONCRETE_POWDER,
-    Material.ORANGE_CONCRETE_POWDER,
-    Material.MAGENTA_CONCRETE_POWDER,
-    Material.LIGHT_BLUE_CONCRETE_POWDER,
-    Material.YELLOW_CONCRETE_POWDER,
-    Material.LIME_CONCRETE_POWDER,
-    Material.PINK_CONCRETE_POWDER,
-    Material.GRAY_CONCRETE_POWDER,
-    Material.LIGHT_GRAY_CONCRETE_POWDER,
-    Material.CYAN_CONCRETE_POWDER,
-    Material.PURPLE_CONCRETE_POWDER,
-    Material.BLUE_CONCRETE_POWDER,
-    Material.BROWN_CONCRETE_POWDER,
-    Material.GREEN_CONCRETE_POWDER,
-    Material.RED_CONCRETE_POWDER,
-    Material.BLACK_CONCRETE_POWDER
-  );
-  private static final EnumSet<Material> ANVILS = EnumSet.of(
-    Material.ANVIL,
-    Material.CHIPPED_ANVIL,
-    Material.DAMAGED_ANVIL
   );
 
   private final GravityControl plugin;
@@ -80,10 +60,10 @@ public class GravityListener implements Listener {
     if (
       (m == Material.SAND && !this.plugin.config.blocks.sand)
         || (m == Material.RED_SAND && !this.plugin.config.blocks.redSand)
-        || (ANVILS.contains(m) && !this.plugin.config.blocks.anvil)
+        || (ANVIL.isTagged(m) && !this.plugin.config.blocks.anvil)
         || (m == Material.DRAGON_EGG && !this.plugin.config.blocks.dragonEgg)
         || (m == Material.GRAVEL && !this.plugin.config.blocks.gravel)
-        || (CONCRETE_POWDERS.contains(m) && !this.plugin.config.blocks.concretePowder)
+        || (CONCRETE_POWDER.isTagged(m) && !this.plugin.config.blocks.concretePowder)
     ) return;
 
     world.spawnFallingBlock(falling.getLocation().add(velocity.clone().multiply(0.25)), falling.getBlockData())

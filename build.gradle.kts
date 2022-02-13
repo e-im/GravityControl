@@ -1,14 +1,14 @@
 import net.minecrell.pluginyml.bukkit.BukkitPluginDescription.Permission.Default
 
 plugins {
-  id("com.github.johnrengelman.shadow") version "7.1.1"
+  id("com.github.johnrengelman.shadow") version "7.1.2"
   id("xyz.jpenilla.run-paper") version "1.0.6"
   id("java")
   id("net.minecrell.plugin-yml.bukkit") version "0.5.1"
 }
 
 group = "dev.thoughtcrime"
-version = "1.3.0-SNAPSHOT"
+version = "1.3.0"
 description = "Plugin to enable gravity/sand duping on PaperMC"
 
 repositories {

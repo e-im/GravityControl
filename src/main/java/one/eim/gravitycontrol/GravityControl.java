@@ -1,4 +1,4 @@
-package dev.thoughtcrime.gravitycontrol;
+package one.eim.gravitycontrol;
 
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.SimplePie;

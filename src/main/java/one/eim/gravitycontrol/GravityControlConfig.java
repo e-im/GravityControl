@@ -1,4 +1,4 @@
-package dev.thoughtcrime.gravitycontrol;
+package one.eim.gravitycontrol;
 
 import org.bukkit.configuration.ConfigurationSection;
 

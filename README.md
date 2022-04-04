@@ -1,7 +1,7 @@
 # GravityControl
 ### ***Liberate your server from the anti-dupe bourgeoisie.***
 #### Paper plugin to enable gravity/sand duplication
-# [Downloads](https://github.com/laymanuel/GravityControl/releases) | [Discord](https://discord.gg/TNvq9y7esy)
+# [Downloads](https://github.com/sulu5890/GravityControl/releases) | [Discord](https://discord.gg/TNvq9y7esy)
 
 ## **Features:**
 

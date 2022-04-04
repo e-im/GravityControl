@@ -1,4 +1,4 @@
-package dev.thoughtcrime.gravitycontrol;
+package one.eim.gravitycontrol;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;

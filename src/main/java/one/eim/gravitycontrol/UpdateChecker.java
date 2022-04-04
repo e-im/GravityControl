@@ -1,4 +1,4 @@
-package dev.thoughtcrime.gravitycontrol;
+package one.eim.gravitycontrol;
 
 import com.google.gson.Gson;
 
@@ -39,7 +39,7 @@ public class UpdateChecker {
 
       if (version.outdated()) {
         this.plugin.getLogger().log(Level.INFO, "GravityControl is out of date! Current version: " + this.plugin.getDescription().getVersion() + " Latest version: " + version.latest() + ".");
-        this.plugin.getLogger().log(Level.INFO, "Please download an updated version of GravityControl from https://github.com/laymanuel/GravityControl/releases");
+        this.plugin.getLogger().log(Level.INFO, "Please download an updated version of GravityControl from https://github.com/sulu5890/GravityControl/releases");
       }
     } catch (Throwable ignored) {
     }

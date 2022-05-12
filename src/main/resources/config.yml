@@ -1,12 +1,33 @@
-# Worlds where gravity dupes will be allowed. Default "*" means all worlds.
+# Do not touch. Used for configuration migration.
+_version: 2
+
+# Worlds where gravity duplication is enabled.
+# `*` means all worlds.
+# WARNING: World key is used, NOT world name.
+# For example: `minecraft:overworld` rather than `world`.
 worlds:
   - "*"
 
-# Blocks that you want to allow duping. Default all enabled.
-enabled-blocks:
-  sand: true
-  red-sand: true
-  anvil: true
-  dragon-egg: true
-  gravel: true
-  concrete-powder: true
+# Blocks for which duping is allowed.
+blocks:
+  - "sand"
+  - "red_sand"
+  - "gravel"
+  - "anvil"
+  - "dragon_egg"
+  - "white_concrete_powder"
+  - "orange_concrete_powder"
+  - "magenta_concrete_powder"
+  - "light_blue_concrete_powder"
+  - "yellow_concrete_powder"
+  - "lime_concrete_powder"
+  - "pink_concrete_powder"
+  - "gray_concrete_powder"
+  - "light_gray_concrete_powder"
+  - "cyan_concrete_powder"
+  - "purple_concrete_powder"
+  - "blue_concrete_powder"
+  - "brown_concrete_powder"
+  - "green_concrete_powder"
+  - "red_concrete_powder"
+  - "black_concrete_powder"

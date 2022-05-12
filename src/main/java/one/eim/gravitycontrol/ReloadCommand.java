@@ -21,7 +21,7 @@ public class ReloadCommand implements CommandExecutor {
   public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
     sender.sendMessage(prefix.append(Component.text("Attempting to reload configuration...", NamedTextColor.WHITE)));
     this.plugin.reloadConfig();
-    this.plugin.config = new GravityControlConfig(this.plugin.getConfig());
+    this.plugin.config = new Configuration(this.plugin, this.plugin.getConfig());
     sender.sendMessage(prefix.append(Component.text("Successfully reloaded configuration!", NamedTextColor.GREEN)));
     return true;
   }

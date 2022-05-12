@@ -15,11 +15,7 @@ import org.bukkit.util.Vector;
 
 import java.util.EnumSet;
 
-import static com.destroystokyo.paper.MaterialSetTag.ANVIL;
-import static com.destroystokyo.paper.MaterialTags.CONCRETE_POWDER;
-
 public class GravityListener implements Listener {
-  private static final Vector ZERO = new Vector(0, 0, 0);
   private static final EnumSet<BlockFace> BLOCK_FACES = EnumSet.of(
     BlockFace.NORTH,
     BlockFace.EAST,
@@ -35,7 +31,7 @@ public class GravityListener implements Listener {
 
   @EventHandler(priority = EventPriority.HIGHEST)
   public void onEntityChangeBlock(final EntityChangeBlockEvent event) {
-    if (!(event.getEntity() instanceof final FallingBlock falling) || event.getTo() == Material.AIR) return;
+    if (event.getTo() == Material.AIR || !(event.getEntity() instanceof final FallingBlock falling)) return;
     final BoundingBox boundingBox = falling.getBoundingBox().expand(-0.01D);
 
     for (BlockFace face : BLOCK_FACES) {
@@ -51,26 +47,17 @@ public class GravityListener implements Listener {
   private void dupe(final FallingBlock falling, final Vector portalRelativeVector) {
     final Location location = falling.getLocation();
     final World world = location.getWorld();
-    if (!this.plugin.config.worlds.contains("*") && !this.plugin.config.worlds.contains(world.getName()))
+    if (!(this.plugin.config.worlds.contains(world.key()) || this.plugin.config.blocks.contains(falling.getBlockData().getMaterial())))
       return;
 
-    final Material m = falling.getBlockData().getMaterial();
-    if ((m == Material.SAND && !this.plugin.config.blocks.sand)
-        || (m == Material.RED_SAND && !this.plugin.config.blocks.redSand)
-        || (ANVIL.isTagged(m) && !this.plugin.config.blocks.anvil)
-        || (m == Material.DRAGON_EGG && !this.plugin.config.blocks.dragonEgg)
-        || (m == Material.GRAVEL && !this.plugin.config.blocks.gravel)
-        || (CONCRETE_POWDER.isTagged(m) && !this.plugin.config.blocks.concretePowder)
-    ) return;
+    final Vector vector = falling.getVelocity();
 
-    final Vector velocity = falling.getVelocity();
-
-    if (velocity.equals(ZERO)) {
+    if (vector.getX() == 0 && vector.getZ() == 0) {
       world.spawnFallingBlock(falling.getLocation().add(portalRelativeVector.multiply(0.25D).setY(0.05D)), falling.getBlockData());
       return;
     }
 
-    world.spawnFallingBlock(location.add(velocity.clone().multiply(0.25)), falling.getBlockData())
-      .setVelocity(velocity.clone().multiply(this.plugin.config.horizontalCoefficient).setY(velocity.getY() * this.plugin.config.verticalCoefficient));
+    world.spawnFallingBlock(location.add(vector.clone().multiply(0.25)), falling.getBlockData())
+      .setVelocity(vector.clone().multiply(this.plugin.config.horizontalCoefficient).setY(vector.getY() * this.plugin.config.verticalCoefficient));
   }
 }

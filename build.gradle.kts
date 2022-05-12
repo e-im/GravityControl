@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "one.eim"
-version = "1.4.0-SNAPSHOT"
+version = "2.0.0-SNAPSHOT"
 description = "Plugin to enable gravity/sand duping on PaperMC"
 
 repositories {

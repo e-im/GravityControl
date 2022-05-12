@@ -2,9 +2,7 @@ package one.eim.gravitycontrol;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
 import org.bukkit.entity.FallingBlock;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -13,14 +11,14 @@ import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
 
-import java.util.EnumSet;
+import java.util.Set;
 
 public class GravityListener implements Listener {
-  private static final EnumSet<BlockFace> BLOCK_FACES = EnumSet.of(
-    BlockFace.NORTH,
-    BlockFace.EAST,
-    BlockFace.SOUTH,
-    BlockFace.WEST
+  private static final Set<Vector> DIRECTIONS = Set.of(
+    new Vector(0, 0, -1),
+    new Vector(1, 0, 0),
+    new Vector(0, 0, 1),
+    new Vector(-1, 0, 0)
   );
 
   private final GravityControl plugin;
@@ -31,33 +29,42 @@ public class GravityListener implements Listener {
 
   @EventHandler(priority = EventPriority.HIGHEST)
   public void onEntityChangeBlock(final EntityChangeBlockEvent event) {
-    if (event.getTo() == Material.AIR || !(event.getEntity() instanceof final FallingBlock falling)) return;
+    if (event.getTo() == Material.AIR
+      || !(event.getEntity() instanceof final FallingBlock falling)
+      || !this.plugin.config.worlds.contains(event.getBlock().getWorld().key())
+      || !this.plugin.config.blocks.contains(falling.getBlockData().getMaterial())
+    ) {
+      return;
+    }
+
     final BoundingBox boundingBox = falling.getBoundingBox().expand(-0.01D);
 
-    for (BlockFace face : BLOCK_FACES) {
-      final Block relative = event.getBlock().getRelative(face);
-      if (relative.getType() != Material.END_PORTAL) continue;
+    for (Vector direction : DIRECTIONS) {
+      final Location loc = event.getBlock().getLocation().add(direction);
+      if (!loc.getWorld().isChunkLoaded(loc.getBlockX() >> 4, loc.getBlockZ() >> 4)) {
+        continue;
+      }
 
-      if (relative.getBoundingBox().overlaps(boundingBox)) {
-        this.dupe(falling, face.getDirection());
+      final Block block = loc.getBlock();
+      if (block.getType() != Material.END_PORTAL || !block.getBoundingBox().overlaps(boundingBox)) {
+        continue;
+      }
+
+      final Vector velocity = falling.getVelocity();
+
+      if (velocity.getX() == 0 && velocity.getZ() == 0) {
+        loc.getWorld().spawnFallingBlock(falling.getLocation().add(direction.getX() * 0.25D, 0.05D, direction.getZ() * 0.25D), falling.getBlockData());
+      } else {
+        final Vector endVelocity = velocity
+          .setX(velocity.getX() * this.plugin.config.horizontalCoefficient)
+          .setY(velocity.getY() * this.plugin.config.verticalCoefficient)
+          .setZ(velocity.getZ() * this.plugin.config.horizontalCoefficient);
+
+        falling.getWorld().spawnFallingBlock(
+          falling.getLocation().add(direction.getX() * 0.25D, direction.getY() * 0.25D, direction.getZ() * 0.25D),
+          falling.getBlockData()
+        ).setVelocity(endVelocity);
       }
     }
-  }
-
-  private void dupe(final FallingBlock falling, final Vector portalRelativeVector) {
-    final Location location = falling.getLocation();
-    final World world = location.getWorld();
-    if (!(this.plugin.config.worlds.contains(world.key()) || this.plugin.config.blocks.contains(falling.getBlockData().getMaterial())))
-      return;
-
-    final Vector vector = falling.getVelocity();
-
-    if (vector.getX() == 0 && vector.getZ() == 0) {
-      world.spawnFallingBlock(falling.getLocation().add(portalRelativeVector.multiply(0.25D).setY(0.05D)), falling.getBlockData());
-      return;
-    }
-
-    world.spawnFallingBlock(location.add(vector.clone().multiply(0.25)), falling.getBlockData())
-      .setVelocity(vector.clone().multiply(this.plugin.config.horizontalCoefficient).setY(vector.getY() * this.plugin.config.verticalCoefficient));
   }
 }

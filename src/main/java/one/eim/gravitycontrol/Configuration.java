@@ -9,16 +9,19 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.intellij.lang.annotations.Subst;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-public class Configuration {
-  public final double horizontalCoefficient;
-  public final double verticalCoefficient;
-  public final Set<Key> worlds;
-  public final Set<Material> blocks;
+class Configuration {
   private final GravityControl plugin;
 
-  public Configuration(GravityControl plugin, ConfigurationSection config) {
+  final double horizontalCoefficient;
+  final double verticalCoefficient;
+  final Set<Key> worlds;
+  final Set<Material> blocks;
+  final List<String> regions;
+
+  Configuration(GravityControl plugin, ConfigurationSection config) {
     this.plugin = plugin;
 
     // These seem to make it about match vanilla, but where did these values come from??
@@ -30,6 +33,7 @@ public class Configuration {
 
     this.worlds = worlds(config);
     this.blocks = blocks(config);
+    this.regions = config.getStringList(Fields.regions);
   }
 
   private Set<Material> blocks(final ConfigurationSection config) {
@@ -72,8 +76,9 @@ public class Configuration {
     return keys;
   }
 
-  static final class Fields {
+  private static final class Fields {
     static final String worlds = "worlds";
     static final String blocks = "blocks";
+    static final String regions = "regions";
   }
 }

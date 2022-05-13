@@ -15,10 +15,14 @@ repositories {
   maven("https://papermc.io/repo/repository/maven-public/") {
     name = "PaperMC"
   }
+  maven("https://maven.enginehub.org/repo/") {
+    name = "EngineHub"
+  }
 }
 
 dependencies {
   compileOnly("io.papermc.paper", "paper-api", "1.18.2-R0.1-SNAPSHOT")
+  compileOnly("com.sk89q.worldguard", "worldguard-bukkit", "7.0.7")
   implementation("org.bstats", "bstats-bukkit", "3.0.0")
 }
 
@@ -27,6 +31,8 @@ bukkit {
   authors = listOf("laymanuel", "sulu")
   main = "one.eim.gravitycontrol.GravityControl"
   apiVersion = "1.16"
+
+  softDepend = listOf("WorldGuard")
 
   commands {
     register("gcr") {

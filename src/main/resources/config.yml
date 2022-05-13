@@ -31,3 +31,8 @@ blocks:
   - "green_concrete_powder"
   - "red_concrete_powder"
   - "black_concrete_powder"
+
+# List of WorldGuard regions where duping is allowed
+# `*` means all regions. Checked based on end portal coordinates.
+regions:
+  - "*"

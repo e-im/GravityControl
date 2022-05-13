@@ -9,13 +9,13 @@ import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.util.logging.Level;
 
-public class UpdateChecker {
+class UpdateChecker {
   private final HttpClient httpClient;
   private final HttpRequest request;
   private final Gson gson;
   private final GravityControl plugin;
 
-  public UpdateChecker(GravityControl plugin) {
+  UpdateChecker(GravityControl plugin) {
     this.httpClient = HttpClient.newBuilder()
       .followRedirects(HttpClient.Redirect.ALWAYS)
       .connectTimeout(Duration.ofSeconds(2))
@@ -30,7 +30,7 @@ public class UpdateChecker {
     this.plugin = plugin;
   }
 
-  public void check() {
+  void check() {
     try {
       Version version = this.gson.fromJson(
         this.httpClient.send(this.request, HttpResponse.BodyHandlers.ofString()).body(),
@@ -45,7 +45,7 @@ public class UpdateChecker {
     }
   }
 
-  public static final class Version {
+  private static final class Version {
     private final boolean outdated;
     private final String latest;
 

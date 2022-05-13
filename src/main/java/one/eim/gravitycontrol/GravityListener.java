@@ -45,6 +45,12 @@ public class GravityListener implements Listener {
         continue;
       }
 
+      // Check end portal position. This seems to make more sense than checking block or entity location
+      // as this can vary by design
+      if (this.plugin.worldGuardHook != null && !this.plugin.worldGuardHook.dupingAllowed(loc)) {
+        continue;
+      }
+
       final Block block = loc.getBlock();
       if (block.getType() != Material.END_PORTAL || !block.getBoundingBox().overlaps(boundingBox)) {
         continue;

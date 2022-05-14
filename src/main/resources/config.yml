@@ -36,3 +36,6 @@ blocks:
 # `*` means all regions. Checked based on end portal coordinates.
 regions:
   - "*"
+
+# If GravityControl should check for updates on startup
+update-checker: true

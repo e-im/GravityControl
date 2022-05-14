@@ -26,6 +26,7 @@ class Configuration {
   final Set<Key> worlds;
   final Set<Material> blocks;
   final List<String> regions;
+  final boolean updateChecker;
 
   Configuration(GravityControl plugin, FileConfiguration config) {
     this.plugin = plugin;
@@ -36,14 +37,13 @@ class Configuration {
 
     // These seem to make it about match vanilla, but where did these values come from??
     // magic number much
-    config.addDefault("horizontal-coefficient", 1.46D);
-    config.addDefault("vertical-coefficient", -2.4D);
-    this.horizontalCoefficient = config.getDouble("horizontal-coefficient");
-    this.verticalCoefficient = config.getDouble("vertical-coefficient");
+    this.horizontalCoefficient = config.getDouble("horizontal-coefficient", 1.46D);
+    this.verticalCoefficient = config.getDouble("vertical-coefficient", -2.4D);
 
     this.worlds = worlds(config);
     this.blocks = blocks(config);
     this.regions = config.getStringList(Fields.regions);
+    this.updateChecker = config.getBoolean(Fields.updateChecker);
   }
 
   private Set<Material> blocks(final ConfigurationSection config) {
@@ -132,6 +132,7 @@ class Configuration {
     config.set(Fields.worlds, newWorlds);
     config.set(Fields.blocks, newMaterials);
     config.set(Fields.regions, List.of("*"));
+    config.set(Fields.updateChecker, true);
 
     config.setComments(Fields._version, List.of(
       "Do not touch. Used for configuration migration."
@@ -150,6 +151,9 @@ class Configuration {
       "List of WorldGuard regions where duping is allowed",
       "`*` means all regions. Checked based on end portal coordinates."
     ));
+    config.setComments(Fields.updateChecker, List.of(
+      "If GravityControl should check for updates on startup"
+    ));
 
     try {
       config.save(this.plugin.getDataFolder().toPath().resolve("config.yml").toFile());
@@ -164,5 +168,6 @@ class Configuration {
     static final String worlds = "worlds";
     static final String blocks = "blocks";
     static final String regions = "regions";
+    static final String updateChecker = "update-checker";
   }
 }

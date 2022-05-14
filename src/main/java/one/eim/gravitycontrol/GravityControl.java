@@ -4,7 +4,6 @@ import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class GravityControl extends JavaPlugin {
-  private final UpdateChecker updater = new UpdateChecker(this);
   public Configuration config;
 
   WorldGuardHook worldGuardHook = null;
@@ -22,7 +21,7 @@ public final class GravityControl extends JavaPlugin {
     this.getServer().getPluginManager().registerEvents(new GravityListener(this), this);
     this.getCommand("gcr").setExecutor(new ReloadCommand(this));
 
-    this.getServer().getScheduler().runTaskTimerAsynchronously(this, updater::check, 200, 864000);
+    if (this.config.updateChecker) new UpdateChecker(this).check();
     new Metrics(this, 13384);
   }
 }

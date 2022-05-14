@@ -2,6 +2,7 @@ package one.eim.gravitycontrol;
 
 import com.google.gson.Gson;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -20,29 +21,31 @@ class UpdateChecker {
       .followRedirects(HttpClient.Redirect.ALWAYS)
       .connectTimeout(Duration.ofSeconds(2))
       .build();
-
-    this.request = HttpRequest.newBuilder(URI.create("https://gravitycontrol.thoughtcrime.dev/version"))
+    this.request = HttpRequest.newBuilder(URI.create("https://gravitycontrol.eim.one/version"))
       .POST(HttpRequest.BodyPublishers.ofString(plugin.getDescription().getVersion()))
       .build();
-
     this.gson = new Gson();
-
     this.plugin = plugin;
   }
 
   void check() {
-    try {
-      Version version = this.gson.fromJson(
-        this.httpClient.send(this.request, HttpResponse.BodyHandlers.ofString()).body(),
-        Version.class
-      );
+    this.plugin.getServer().getScheduler().runTaskAsynchronously(this.plugin, () -> {
+      final Version version;
+      try {
+        version = this.gson.fromJson(
+          this.httpClient.send(this.request, HttpResponse.BodyHandlers.ofString()).body(),
+          Version.class
+        );
+      } catch (IOException | InterruptedException e) {
+        this.plugin.getSLF4JLogger().info("Failed to check for updates", e);
+        return;
+      }
 
       if (version.outdated()) {
         this.plugin.getLogger().log(Level.INFO, "GravityControl is out of date! Current version: " + this.plugin.getDescription().getVersion() + " Latest version: " + version.latest() + ".");
-        this.plugin.getLogger().log(Level.INFO, "Please download an updated version of GravityControl from https://github.com/sulu5890/GravityControl/releases");
+        this.plugin.getLogger().log(Level.INFO, "Please download an updated version of GravityControl from https://dev.bukkit.org/projects/gravity-control");
       }
-    } catch (Throwable ignored) {
-    }
+    });
   }
 
   private static final class Version {

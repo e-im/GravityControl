@@ -4,7 +4,7 @@
 
 #### Paper plugin to enable gravity/sand duplication
 
-# [Downloads](https://github.com/sulu5890/GravityControl/releases) | [Discord](https://discord.gg/TNvq9y7esy)
+# [Downloads](https://dev.bukkit.org/projects/gravity-control) | [Discord](https://discord.gg/TNvq9y7esy)
 
 ## **Features:**
 

@@ -9,14 +9,18 @@ public final class GravityControl extends JavaPlugin {
   WorldGuardHook worldGuardHook = null;
 
   @Override
+  public void onLoad() {
+    if (this.getServer().getPluginManager().getPlugin("WorldGuard") != null) {
+      this.worldGuardHook = new WorldGuardHook(this);
+      if (!this.worldGuardHook.register()) this.worldGuardHook = null;
+    }
+  }
+
+  @Override
   public void onEnable() {
     this.saveDefaultConfig();
 
     this.config = new Configuration(this, this.getConfig());
-
-    if (this.getServer().getPluginManager().isPluginEnabled("WorldGuard")) {
-      this.worldGuardHook = new WorldGuardHook(this);
-    }
 
     this.getServer().getPluginManager().registerEvents(new GravityListener(this), this);
     this.getCommand("gcr").setExecutor(new ReloadCommand(this));

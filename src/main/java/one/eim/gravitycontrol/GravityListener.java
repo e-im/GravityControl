@@ -1,5 +1,6 @@
 package one.eim.gravitycontrol;
 
+import com.sk89q.worldguard.protection.flags.StateFlag.State;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -45,14 +46,14 @@ public class GravityListener implements Listener {
         continue;
       }
 
-      // Check end portal position. This seems to make more sense than checking block or entity location
-      // as this can vary by design
-      if (this.plugin.worldGuardHook != null && !this.plugin.worldGuardHook.dupingAllowed(loc)) {
+      final Block block = loc.getBlock();
+      if (block.getType() != Material.END_PORTAL || !block.getBoundingBox().overlaps(boundingBox)) {
         continue;
       }
 
-      final Block block = loc.getBlock();
-      if (block.getType() != Material.END_PORTAL || !block.getBoundingBox().overlaps(boundingBox)) {
+      // Check end portal position. This seems to make more sense than checking block or entity location
+      // as this can vary by design
+      if (this.plugin.worldGuardHook != null && this.plugin.worldGuardHook.dupingAllowed(loc) != State.ALLOW) {
         continue;
       }
 

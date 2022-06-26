@@ -1,4 +1,6 @@
 import net.minecrell.pluginyml.bukkit.BukkitPluginDescription.Permission.Default
+import java.io.FileOutputStream
+import java.nio.file.Files.createTempFile
 
 plugins {
   id("java")
@@ -50,6 +52,13 @@ bukkit {
   }
 }
 
+fun getJar(url: String, name: String): File {
+  val file = createTempFile(name, ".jar").toFile();
+  uri(url).toURL().openStream().use { it.copyTo(FileOutputStream(file)) }
+
+  return file
+}
+
 tasks {
   java {
     toolchain {
@@ -59,6 +68,10 @@ tasks {
 
   runServer {
     minecraftVersion("1.18.2")
+
+    val worldEditUrl = "https://mediafiles.forgecdn.net/files/3697/296/worldedit-bukkit-7.2.10.jar"
+    val worldGuardUrl = "https://mediafiles.forgecdn.net/files/3677/516/worldguard-bukkit-7.0.7-dist.jar"
+    pluginJars(getJar(worldEditUrl, "WorldEdit"), getJar(worldGuardUrl, "WorldGuard"))
   }
 
   shadowJar {

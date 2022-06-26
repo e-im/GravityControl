@@ -30,7 +30,7 @@ bukkit {
   website = "https://github.com/sulu5890/GravityControl"
   authors = listOf("laymanuel", "sulu")
   main = "one.eim.gravitycontrol.GravityControl"
-  apiVersion = "1.16"
+  apiVersion = "1.18"
 
   softDepend = listOf("WorldGuard")
 

@@ -12,7 +12,7 @@
 * Allow duping in some worlds but not others
 * WorldGuard integration
 * Enable sand duping on Paper servers
-* 1.16-1.18+ servers. Complete cross-version compatible. No NMS or reflection!
+* 1.18-1.19+ compatibility. Use version `1.3.0` for 1.16-1.17 support.
 
 ## **Commands**
 

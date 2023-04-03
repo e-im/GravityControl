@@ -1,4 +1,3 @@
-import net.minecrell.pluginyml.bukkit.BukkitPluginDescription.Permission.Default
 import java.io.FileOutputStream
 import java.nio.file.Files.createTempFile
 
@@ -6,7 +5,6 @@ plugins {
   id("java")
   id("xyz.jpenilla.run-paper") version "1.0.6"
   id("com.github.johnrengelman.shadow") version "7.1.2"
-  id("net.minecrell.plugin-yml.bukkit") version "0.5.1"
 }
 
 group = "one.eim"
@@ -28,29 +26,6 @@ dependencies {
   implementation("org.bstats", "bstats-bukkit", "3.0.0")
 }
 
-bukkit {
-  website = "https://github.com/sulu5890/GravityControl"
-  authors = listOf("laymanuel", "sulu")
-  main = "one.eim.gravitycontrol.GravityControl"
-  apiVersion = "1.18"
-
-  softDepend = listOf("WorldGuard")
-
-  commands {
-    register("gcr") {
-      description = "Reload GravityControl configuration"
-      permission = "gravitycontrol.reload"
-      usage = "/gcr"
-    }
-  }
-
-  permissions {
-    register("gravitycontrol.reload") {
-      description = "Allows use of the /gcr command"
-      default = Default.OP
-    }
-  }
-}
 
 fun getJar(url: String, name: String): File {
   val file = createTempFile(name, ".jar").toFile();

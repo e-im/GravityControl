@@ -29,7 +29,7 @@ class UpdateChecker {
   }
 
   void check() {
-    this.plugin.getServer().getScheduler().runTaskAsynchronously(this.plugin, () -> {
+    Compatibility.runTaskAsync(this.plugin, () -> {
       final Version version;
       try {
         version = this.gson.fromJson(

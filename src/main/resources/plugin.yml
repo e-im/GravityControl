@@ -3,7 +3,8 @@ version: 1.0
 author: laymanuel, sulu
 website: https://github.com/sulu5890/GravityControl
 main: one.eim.gravitycontrol.GravityControl
-api-version: 1.18
+api-version: 1.19
+folia-supported: true
 softdepend: [WorldGuard]
 
 commands:

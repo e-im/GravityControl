@@ -1,0 +1,19 @@
+name: GravityControl
+version: 1.0
+author: laymanuel, sulu
+website: https://github.com/sulu5890/GravityControl
+main: one.eim.gravitycontrol.GravityControl
+api-version: 1.19
+folia-supported: true
+softdepend: [WorldGuard]
+
+commands:
+  gcr:
+    description: Reload GravityControl configuration
+    permission: gravitycontrol.reload
+    usage: /gcr
+
+permissions:
+  gravitycontrol.reload:
+    description: Allows use of the /gcr command
+    default: op

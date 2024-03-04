@@ -1,3 +1,11 @@
+> [!IMPORTANT]  
+> Paper 1.20.4 build 445 and above has built in support for enabling gravity block duplication.
+> Here are the docs: https://docs.papermc.io/paper/misc/paper-bug-fixes#duplication-bugs (`allow-unsafe-end-portal-teleportation`)
+> 
+> If you are using this version or above, do NOT use GravityControl. Use the option built in to Paper instead.
+> Ensure you uninstall GravityControl before enabling the Paper option. If you don't, gravity blocks will be duplicated twice.
+
+---
 # GravityControl
 
 ### ***Liberate your server from the anti-dupe bourgeoisie.***
